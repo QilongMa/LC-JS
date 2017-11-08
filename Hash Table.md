@@ -15,7 +15,7 @@ Example: 19 is a happy number
 
 **Solution**  
 **思路**  
->1. 把任意整数拆成个位数
+>1.把任意整数拆成个位数
 2.计算个位数的平方和， 并存入Hash Table
 3.返回条件： a. 平方和为1  b. 出现loop/重复值
 
