@@ -63,6 +63,7 @@ Given binary tree [1,null,2,3], return [1,3,2].
  * @param {TreeNode} root
  * @return {number[]}
  */
+###iterative
 var inorderTraversal = function(root) {
     var res = [];
     var stack = [];
@@ -80,12 +81,19 @@ var inorderTraversal = function(root) {
     
     return res;
 };
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
+### recursive
+var helper = function(node, arr){
+    if(node === null){
+        return arr;
+    }
+    helper(node.left, arr);
+    arr.push(node.val);
+    helper(node.right, arr);
+}
+
+var inorderTraversal = function(root) {
+    var arr = [];
+    helper(root, arr);
+    return arr;
+};
+```
