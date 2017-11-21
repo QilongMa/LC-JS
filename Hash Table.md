@@ -5,11 +5,8 @@
 
 **Description**   
 >Write an algorithm to determine if a number is "happy".
-
 A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
-
 Example: 19 is a happy number
-
 12 + 92 = 82
 82 + 22 = 68
 62 + 82 = 100
@@ -18,9 +15,9 @@ Example: 19 is a happy number
 
 **Solution**  
 **思路**  
->1. 把任意整数拆成个位数
-2. 计算个位数的平方和， 并存入Hash Table
-3. 返回条件： a. 平方和为1  b. 出现loop/重复值
+>1.把任意整数拆成个位数
+2.计算个位数的平方和， 并存入Hash Table
+3.返回条件： a. 平方和为1  b. 出现loop/重复值
 
 ```JavaScript
 /**
