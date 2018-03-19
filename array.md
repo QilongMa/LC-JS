@@ -1,4 +1,6 @@
 >11. Container With Most Water
+>35. Search Insert Position
+>41. First Missing Positive
 
 * * *
 #### 11. Container With Most Water
@@ -10,8 +12,8 @@ Note: You may not slant the container and n is at least 2.
 **Solution**  
 **思路**  
 >1. 2 pointers
-2. compare 2 sides' height, based on minheight * length to get maximum result
-3. move pointers based on the minheight. since when we start from the 2 sides, we already get the max width, the possible larger area only occurs with higher height. 
+>2. compare 2 sides' height, based on minheight * length to get maximum result
+>3. move pointers based on the minheight. since when we start from the 2 sides, we already get the max width, the possible larger area only occurs with higher height. 
 
 
 ```JavaScript
@@ -32,6 +34,76 @@ var maxArea = function(height) {
     }
         
     return res;
+};
+```
+* * *
+* * *
+#### 35. Search Insert Position
+
+**Description**   
+>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+>You may assume no duplicates in the array.
+
+**Solution**  
+**思路**  
+>1. check 2 sides and corner cases >= || <=
+
+
+```JavaScript
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var searchInsert = function(nums, target) {
+    let len = nums.length;
+    if(len < 1 || nums[0] >= target) return 0;
+    if(nums[len-1] < target) return len;
+    
+    let i = 1;
+    for( ; i < len; i++) {
+        if(nums[i] >= target) {
+            return i;
+        }
+    }
+    
+};
+```
+* * *
+* * *
+#### 41. First Missing Positive
+
+**Description**   
+>Given an unsorted integer array, find the first missing positive integer.
+>For example,
+>```Given [1,2,0] return 3, and [3,4,-1,1] return 2.```
+>Your algorithm should run in O(n) time and uses constant space.
+**Solution**  
+**思路**  
+>1. sort the array, and iterate the array, O(nlogn);
+>2. iterate the array, and put the element to the correct place. After all element put in the correct slot, iterate the new array and return the 1st element which in wrong place.
+
+
+```JavaScript
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var firstMissingPositive = function(nums) {
+    let n = 0, len = nums.length;
+    for(let i = 0; i < len; i++) {
+        while(nums[i] >= 0 && nums[i] < len && nums[i] !== i + 1) {
+            let tmp = nums[i];
+            nums[i] = nums[nums[i]];
+            nums[nums[i]] = tmp;
+        }
+    }    
+    for(let i = 0; i < len; i++) {
+        if(nums[i] !== i + 1) {
+            return i;
+        }
+    }
+    return len+1;
 };
 ```
 * * *
