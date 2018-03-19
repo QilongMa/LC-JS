@@ -11,7 +11,7 @@ Note: You may not slant the container and n is at least 2.
 **思路**  
 >1. 2 pointers
 >2. compare 2 sides' height, based on minheight * length to get maximum result
-3. move pointers based on the minheight. since when we start from the 2 sides, we already get the max width, the possible larger area only occurs with higher height. 
+>3. move pointers based on the minheight. since when we start from the 2 sides, we already get the max width, the possible larger area only occurs with higher height. 
 
 
 ```JavaScript
