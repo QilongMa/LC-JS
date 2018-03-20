@@ -81,8 +81,11 @@ var searchInsert = function(nums, target) {
 **Solution**  
 **思路**  
 >1. sort the array, and iterate the array, O(nlogn);
->2. iterate the array, and put the element to the correct place. After all element put in the correct slot, iterate the new array and return the 1st element which in wrong place.
-
+>2. iterate the array, and each time put index slot with reasonable num. After all element put in the correct slot, iterate the new array and return the 1st element which in wrong place.
+>3. For 2, check boundries
+    >a. the value must > 0 and < len
+    >b. nums[idx] !== idx + 1
+    >c. !!! to avoid infinite loop, nums[nums[idx] - 1] !== nums[idx], which means the target to switch must meet the condition that the target is not in the correct place, otherwise we cannot touch it any more.
 
 ```JavaScript
 /**
@@ -92,15 +95,16 @@ var searchInsert = function(nums, target) {
 var firstMissingPositive = function(nums) {
     let n = 0, len = nums.length;
     for(let i = 0; i < len; i++) {
-        while(nums[i] >= 0 && nums[i] < len && nums[i] !== i + 1) {
+        while(nums[i] >= 0 && nums[i] <= len && nums[i] !== i + 1 && nums[nums[i]-1] !== nums[i]) {
             let tmp = nums[i];
-            nums[i] = nums[nums[i]];
-            nums[nums[i]] = tmp;
+            nums[i] = nums[nums[i]-1];
+            // use nums[tmp-1] instead of nums[nums[i]-1] because of nums[i] got changed
+            nums[tmp-1] = tmp;
         }
     }    
     for(let i = 0; i < len; i++) {
         if(nums[i] !== i + 1) {
-            return i;
+            return i+1;
         }
     }
     return len+1;
